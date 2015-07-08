@@ -20,7 +20,7 @@ Add the following to your `composer.json` file.
 ```json
 {
     "require": {
-        "kong/oauth2-kong-php-client": "~0.0@dev",
+        "kong/kong-oauth2-php-provider": "~0.0@dev",
         "league/oauth2-client": "~1.0@dev"
     }
 }

@@ -1,0 +1,33 @@
+{
+  "name": "kong/oauth2-php-client",
+  "description": "OAuth 2.0 Provider for league/oauth2-client for Accessing Kong API",
+  "license": "MIT",
+  "require": {
+    "league/oauth2-client": "1.0.0-alpha2"
+  },
+  "keywords": [
+    "kong",
+    "ecommerce",
+    "oauth",
+    "oauth2",
+    "authorization",
+    "authentication",
+    "idp",
+    "identity",
+    "sso",
+    "single sign on"
+  ],
+  "authors": [
+    {
+      "name": "Neil Crookes",
+      "email": "neil@kong.agency",
+      "homepage": "https://trykong.com",
+      "role": "Tech Director"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "Kong\\OAuth2\\Client\\": "src/"
+    }
+  }
+}

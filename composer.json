@@ -1,9 +1,10 @@
 {
-  "name": "kong/oauth2-php-client",
-  "description": "OAuth 2.0 Provider for league/oauth2-client for Accessing Kong API",
+  "name": "kong/kong-oauth2-php-provider",
+  "description": "Kong OAuth 2.0 Client Provider for The PHP League OAuth2-Client",
   "license": "MIT",
   "require": {
-    "league/oauth2-client": "1.0.0-alpha2"
+    "php": ">=5.5.0",
+    "league/oauth2-client": "~1.0@dev"
   },
   "keywords": [
     "kong",
@@ -29,5 +30,8 @@
     "psr-4": {
       "Kong\\OAuth2\\Client\\": "src/"
     }
+  },
+  "branch-alias": {
+    "dev-master": "0.0.x-dev"
   }
 }

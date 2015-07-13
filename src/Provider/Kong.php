@@ -11,6 +11,11 @@ use Psr\Http\Message\ResponseInterface;
 class Kong extends AbstractProvider
 {
     /**
+     * @var string Key used in the access token response to identify the user.
+     */
+    const ACCESS_TOKEN_UID = 'store_id';
+
+    /**
      * @var string
      */
     protected $storeAdminDomain;

@@ -4,16 +4,16 @@ namespace Kong\OAuth2\Client\Provider;
 
 use League\OAuth2\Client\Provider\AbstractProvider;
 use League\OAuth2\Client\Provider\Exception\IdentityProviderException;
-use League\OAuth2\Client\Provider\UserInterface;
+use League\OAuth2\Client\Provider\ResourceOwnerInterface;
 use League\OAuth2\Client\Token\AccessToken;
 use Psr\Http\Message\ResponseInterface;
 
 class Kong extends AbstractProvider
 {
     /**
-     * @var string Key used in the access token response to identify the user.
+     * @var string Key used in the access token response to identify the resource owner.
      */
-    const ACCESS_TOKEN_UID = 'store_id';
+    const ACCESS_TOKEN_RESOURCE_OWNER_ID = 'store_id';
 
     /**
      * @var string
@@ -41,7 +41,7 @@ class Kong extends AbstractProvider
      * @param AccessToken $token
      * @return string
      */
-    public function getUserDetailsUrl(AccessToken $token)
+    public function getResourceOwnerDetailsUrl(AccessToken $token)
     {
     }
 
@@ -93,13 +93,13 @@ class Kong extends AbstractProvider
     }
 
     /**
-     * Generate a user object from a successful user details request.
+     * Generate a resource owner object from a successful resource owner details request.
      *
      * @param array $response
      * @param AccessToken $token
-     * @return UserInterface
+     * @return ResourceOwnerInterface
      */
-    protected function createUser(array $response, AccessToken $token)
+    protected function createResourceOwner(array $response, AccessToken $token)
     {
     }
 

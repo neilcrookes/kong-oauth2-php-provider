@@ -21,11 +21,16 @@ class Kong extends AbstractProvider
     protected $storeAdminDomain;
 
     /**
+     * @var string
+     */
+    protected $locale;
+
+    /**
      * @return string
      */
     public function getBaseAuthorizationUrl()
     {
-        return 'https://'.$this->getStoreAdminDomain().'/en-gb/admin/apps/authorize';
+        return 'https://'.$this->getStoreAdminDomain().'/'.$this->getLocale().'/admin/apps/authorize';
     }
 
     /**
@@ -34,7 +39,7 @@ class Kong extends AbstractProvider
      */
     public function getBaseAccessTokenUrl(array $params)
     {
-        return 'https://'.$this->getStoreAdminDomain().'/en-gb/apps/access';
+        return 'https://'.$this->getStoreAdminDomain().'/oauth/access_token';
     }
 
     /**
@@ -59,6 +64,22 @@ class Kong extends AbstractProvider
     public function setStoreAdminDomain($storeAdminDomain)
     {
         $this->storeAdminDomain = $storeAdminDomain;
+    }
+
+    /**
+     * @return string
+     */
+    public function getLocale()
+    {
+        return $this->locale;
+    }
+
+    /**
+     * @param string $locale
+     */
+    public function setLocale($locale)
+    {
+        $this->locale = $locale;
     }
 
     /**

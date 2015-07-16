@@ -40,7 +40,20 @@ elseif ( isset( $_SESSION['accessToken'] ) )
         $grant = new League\OAuth2\Client\Grant\RefreshToken();
         $_SESSION['accessToken'] = $provider->getAccessToken($grant, ['refresh_token' => $accessToken->getRefreshToken()]);
     }
-    print_r($_SESSION['accessToken']);
+
+    // Optional: Now you have a token you can look up the store it is for
+    try {
+        $store = $provider->getResourceOwner($accessToken);
+
+        // Use these details to create a new profile
+        printf('Hello %s!', $store->getName());
+
+    } catch (Exception $e) {
+
+        echo 'Failed to get store details:';
+        echo $e->getMessage();
+    }
+
     echo '<a href="/?reset=1">Reset</a>';
 }
 elseif ( isset( $_GET['code'] ) )
@@ -66,7 +79,8 @@ else
 {
     $authUrl = $provider->getAuthorizationUrl( [
         'scope' => [
-            'write_products'
+            'read_store',
+            'write_products',
         ],
     ]);
     $_SESSION['oauth2state'] = $provider->getState();

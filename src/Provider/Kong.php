@@ -48,6 +48,7 @@ class Kong extends AbstractProvider
      */
     public function getResourceOwnerDetailsUrl(AccessToken $token)
     {
+        return 'https://'.$this->getStoreAdminDomain().'/'.$this->getLocale().'/api/store';
     }
 
     /**
@@ -92,7 +93,7 @@ class Kong extends AbstractProvider
      */
     protected function getDefaultScopes()
     {
-        return [];
+        return [ 'read_store' ];
     }
 
     /**
@@ -106,8 +107,7 @@ class Kong extends AbstractProvider
     protected function checkResponse(ResponseInterface $response, $data)
     {
         if ( $response->getStatusCode() != 200
-            || ! is_array( $data )
-            || ! array_key_exists( 'access_token', $data ) )
+            || ! is_array( $data ))
         {
             throw new IdentityProviderException( null, null, $response );
         }
@@ -122,6 +122,7 @@ class Kong extends AbstractProvider
      */
     protected function createResourceOwner(array $response, AccessToken $token)
     {
+        return new Store( $response, $token->getResourceOwnerId() );
     }
 
     /**

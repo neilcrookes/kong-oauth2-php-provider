@@ -132,6 +132,6 @@ class Kong extends AbstractProvider
      */
     protected function createResourceOwner(array $response, AccessToken $token)
     {
-        return new Store( $response, $token->getResourceOwnerId() );
+        return new Store( $response, 'id' );
     }
 }

@@ -6,10 +6,13 @@ use League\OAuth2\Client\Provider\AbstractProvider;
 use League\OAuth2\Client\Provider\Exception\IdentityProviderException;
 use League\OAuth2\Client\Provider\ResourceOwnerInterface;
 use League\OAuth2\Client\Token\AccessToken;
+use League\OAuth2\Client\Tool\BearerAuthorizationTrait;
 use Psr\Http\Message\ResponseInterface;
 
 class Kong extends AbstractProvider
 {
+    use BearerAuthorizationTrait;
+
     /**
      * @var string Key used in the access token response to identify the resource owner.
      */
@@ -130,18 +133,5 @@ class Kong extends AbstractProvider
     protected function createResourceOwner(array $response, AccessToken $token)
     {
         return new Store( $response, $token->getResourceOwnerId() );
-    }
-
-    /**
-     * Builds request options used for requesting an access token.
-     *
-     * @param  array $params
-     * @return array
-     */
-    protected function getAccessTokenOptions(array $params)
-    {
-        $options = parent::getAccessTokenOptions( $params );
-        $options['headers']['Content-type'] = 'application/x-www-form-urlencoded';
-        return $options;
     }
 }

@@ -106,10 +106,17 @@ class Kong extends AbstractProvider
      */
     protected function checkResponse(ResponseInterface $response, $data)
     {
-        if ( $response->getStatusCode() != 200
-            || ! is_array( $data ))
+        if ( $response->getStatusCode() != 200 )
         {
-            throw new IdentityProviderException( null, null, $response );
+            if ( is_array( $data ) && array_key_exists( 'error_description ', $data ) )
+            {
+                $message = $data[ 'error_description' ];
+            }
+            else
+            {
+                $message = $response->getReasonPhrase();
+            }
+            throw new IdentityProviderException( $message, $response->getStatusCode(), $response );
         }
     }
 
